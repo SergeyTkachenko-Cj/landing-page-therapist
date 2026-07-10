@@ -1,5 +1,5 @@
 type Func = {
-    func: React.Dispatch<React.SetStateAction<number>>;
+    func: React.Dispatch<React.SetStateAction<string>>;
 }
 
 function Form(prop: Func) {
@@ -10,14 +10,23 @@ function Form(prop: Func) {
         func(prev => prev + 1)
     }
 
+    function formSubmit(e: SubmitEvent) {
+        e.preventDefault();
+        const input = (e.currentTarget as HTMLFormElement).elements[0] as HTMLInputElement;
+        func(input.value);
+    }
+
     return (
         <>
-            <section className="input-section">
+            <form 
+            className="input-section" 
+            onSubmit={e => formSubmit(e)} >
               <input
-                  type="url"
-                  placeholder="https://your-startup.com"
+                  type="text"
+                  placeholder="your-startup.com"
               />
-            </section>
+              <button>Submit</button>
+            </form>
 
             <section className="diagnose">
               <button onClick={increment}>Diagnose My Mental State</button>

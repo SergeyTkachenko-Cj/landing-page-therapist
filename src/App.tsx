@@ -5,13 +5,13 @@ import Header from "./components/Header";
 import './App.css';
 
 function App() {
-  const [count, setCount] = React.useState(0);      
+  const [inpt, setInpt] = React.useState("");      
 
   return (
     <div className="container">
-        <h1>{count}</h1>
+        <h1>{inpt}</h1>
         <Header />
-        <Form func={setCount} />
+        <Form func={setInpt} />
         <Diagnosis />
     </div>
   );
