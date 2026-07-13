@@ -6,31 +6,29 @@ function Form(prop: Func) {
 
     const {func} = prop;
 
-    function increment() {
-        func(prev => prev + 1)
-    }
-
-    function formSubmit(e: SubmitEvent) {
-        e.preventDefault();
-        const input = (e.currentTarget as HTMLFormElement).elements[0] as HTMLInputElement;
-        func(input.value);
+    function formSubmit(formData: FormData) {
+        const input = formData.get("input");
+        if (typeof(input) === "string") func(input);
     }
 
     return (
         <>
             <form 
             className="input-section" 
-            onSubmit={e => formSubmit(e)} >
+            action={formSubmit} >
+              <label className="visually-hidden" htmlFor="input">your website</label>
               <input
                   type="text"
+                  name="input"
+                  id="input"
                   placeholder="your-startup.com"
               />
-              <button>Submit</button>
+              <button>diagnose</button>
             </form>
 
-            <section className="diagnose">
-              <button onClick={increment}>Diagnose My Mental State</button>
-            </section>
+            {/* <section className="diagnose">
+              <button>Diagnose My Mental State</button>
+            </section> */}
         </>
     )
 }

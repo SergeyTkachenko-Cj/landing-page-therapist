@@ -36,6 +36,18 @@ header p {
   line-height: 1.5;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .input-section {
   display: flex;
   gap: 12px;
@@ -59,7 +71,7 @@ header p {
   padding: 0 24px;
   border: none;
   border-radius: 10px;
-  background: #4f46e5;
+  background: #000;
   color: white;
   cursor: pointer;
 }
