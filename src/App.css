@@ -49,7 +49,8 @@ header p {
 }
 
 .input-section {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 100px;
   gap: 12px;
   margin-bottom: 32px;
 }
@@ -133,4 +134,9 @@ header p {
   border-radius: 12px;
   padding: 24px;
   line-height: 1.6;
+}
+
+.checkboxes {
+  display: flex;
+  flex-direction: column;
 }
