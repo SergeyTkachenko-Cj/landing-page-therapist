@@ -50,9 +50,25 @@ header p {
 
 .input-section {
   display: grid;
-  grid-template-columns: 1fr 100px;
+  /* grid-template-columns: 1fr 100px; */
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 50px 1fr;
   gap: 12px;
   margin-bottom: 32px;
+}
+
+#input {
+  grid-column: span 5 / span 5;
+}
+
+.checkboxes {
+  grid-column: span 3 / span 3;
+  grid-row-start: 2;
+}
+
+.radios {
+  grid-column: span 3 / span 6;
+  grid-row-start: 2;
 }
 
 .input-section input {
@@ -69,6 +85,8 @@ header p {
 }
 
 .input-section button {
+  grid-column-start: 6;
+  height: 50px;
   padding: 0 24px;
   border: none;
   border-radius: 10px;
@@ -136,7 +154,7 @@ header p {
   line-height: 1.6;
 }
 
-.checkboxes {
+.checkboxes, .radios {
   display: flex;
   flex-direction: column;
 }

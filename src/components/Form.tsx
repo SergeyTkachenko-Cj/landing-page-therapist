@@ -1,19 +1,22 @@
 type Func = {
     func: React.Dispatch<React.SetStateAction<string>>;
     funcTwo: React.Dispatch<React.SetStateAction<string[]>>;
+    funcThree: React.Dispatch<React.SetStateAction<string>>;
 };
 
 function Form(prop: Func) {
 
-    const {func, funcTwo} = prop;
+    const {func, funcTwo, funcThree} = prop;
 
     function formSubmit(formData: FormData) {
         const input = formData.get("input");
+        const rad = formData.get("radios");
         const boxes = formData.getAll("domains").filter(
           (value): value is string => typeof value === "string"
         );
         
         if (typeof input === "string") func(input);
+        if (typeof rad === "string") funcThree(rad);
         funcTwo(boxes);
     }
 
@@ -30,7 +33,7 @@ function Form(prop: Func) {
                   placeholder="your-startup.com"
                   defaultValue="datatseh.ru theremembery.com cjlogostudio.com"
               />
-              <button>diagnose</button>
+              <button className="diagnose">diagnose</button>
 
               <fieldset className="checkboxes">
                 <legend>How many domains do you own?</legend>
@@ -49,6 +52,19 @@ function Form(prop: Func) {
                 <label>
                     <input type="checkbox" value="from 0 to 10" name="domains" />
                 from 50 to ♾️
+                </label>
+              </fieldset>
+
+              <fieldset className="radios">
+                <legend>Who are you?</legend>
+                <label>
+                    <input type="radio" value="founder" name="radios" defaultChecked={true} />Founder
+                </label>
+                <label>
+                    <input type="radio" value="software engineer" name="radios" />Software engineer
+                </label>
+                <label>
+                    <input type="radio" value="employee" name="radios" />Employee
                 </label>
               </fieldset>
             </form>

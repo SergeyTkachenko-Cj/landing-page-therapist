@@ -6,14 +6,16 @@ import './App.css';
 
 function App() {
   const [inpt, setInpt] = React.useState("");  
-  const [box, setBox] = React.useState<string[]>([]);    
+  const [box, setBox] = React.useState<string[]>([]);  
+  const [radio, setRadio] = React.useState("");  
 
   return (
     <div className="container">
         <h1>Input:{inpt}</h1>
         <h1>Checkbox:{box}</h1>
+        <h1>Radios:{radio}</h1>
         <Header />
-        <Form func={setInpt} funcTwo={setBox} />
+        <Form func={setInpt} funcTwo={setBox} funcThree={setRadio} />
         <Diagnosis />
     </div>
   );
