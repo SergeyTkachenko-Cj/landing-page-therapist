@@ -9,6 +9,7 @@ function App() {
   const [box, setBox] = React.useState<string[]>([]);  
   const [radio, setRadio] = React.useState("");  
   const [dropdown, setDropdown] = React.useState("");
+  const [showDiagnosis, setShowDiagnosis] = React.useState(false)
 
   return (
     <div className="container">
@@ -17,8 +18,8 @@ function App() {
         <h1>Radios:{radio}</h1>
         <h1>Drops:{dropdown}</h1>
         <Header />
-        <Form func={setInpt} funcTwo={setBox} funcThree={setRadio} funcFour={setDropdown} />
-        <Diagnosis />
+        <Form func={setInpt} funcTwo={setBox} funcThree={setRadio} funcFour={setDropdown} funcFive={setShowDiagnosis}/>
+        {showDiagnosis && <Diagnosis />}
     </div>
   );
 }

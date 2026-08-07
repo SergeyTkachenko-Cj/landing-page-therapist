@@ -3,11 +3,12 @@ type Func = {
     funcTwo: React.Dispatch<React.SetStateAction<string[]>>
     funcThree: React.Dispatch<React.SetStateAction<string>>
     funcFour: React.Dispatch<React.SetStateAction<string>>
+    funcFive: React.Dispatch<React.SetStateAction<boolean>>
 };
 
 function Form(prop: Func) {
 
-    const {func, funcTwo, funcThree, funcFour} = prop;
+    const {func, funcTwo, funcThree, funcFour, funcFive} = prop;
 
     function formSubmit(formData: FormData) {
         const singleInputData = Object.fromEntries(formData)
@@ -31,6 +32,7 @@ function Form(prop: Func) {
         if (typeof allData.radios === "string") funcThree(allData.radios)
         if (typeof allData.dropdowns === "string") funcFour(allData.dropdowns)
         funcTwo(boxes);
+        funcFive(prev => prev ? prev : !prev)
     }
 
     return (
