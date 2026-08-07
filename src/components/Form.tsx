@@ -1,8 +1,8 @@
 type Func = {
-    func: React.Dispatch<React.SetStateAction<string>>;
-    funcTwo: React.Dispatch<React.SetStateAction<string[]>>;
-    funcThree: React.Dispatch<React.SetStateAction<string>>;
-    funcFour: React.Dispatch<React.SetStateAction<string>>;
+    func: React.Dispatch<React.SetStateAction<string>>
+    funcTwo: React.Dispatch<React.SetStateAction<string[]>>
+    funcThree: React.Dispatch<React.SetStateAction<string>>
+    funcFour: React.Dispatch<React.SetStateAction<string>>
 };
 
 function Form(prop: Func) {
@@ -10,16 +10,26 @@ function Form(prop: Func) {
     const {func, funcTwo, funcThree, funcFour} = prop;
 
     function formSubmit(formData: FormData) {
-        const input = formData.get("input");
-        const rad = formData.get("radios");
-        const drop = formData.get("dropdowns");
+        const singleInputData = Object.fromEntries(formData)
         const boxes = formData.getAll("domains").filter(
           (value): value is string => typeof value === "string"
-        );
+        )
+
+        type AllData = {
+            input: string,
+            radios: string,
+            dropdowns: string,
+            boxes: string[]
+        }
+
+        const allData: AllData = {
+            ...singleInputData,
+            boxes
+        } as AllData
         
-        if (typeof input === "string") func(input);
-        if (typeof rad === "string") funcThree(rad);
-        if (typeof drop === "string") funcFour(drop);
+        if (typeof allData.input === "string") func(allData.input)
+        if (typeof allData.radios === "string") funcThree(allData.radios)
+        if (typeof allData.dropdowns === "string") funcFour(allData.dropdowns)
         funcTwo(boxes);
     }
 
@@ -74,7 +84,7 @@ function Form(prop: Func) {
               <fieldset className="dropdown">
                 <label htmlFor="coffee-select">How many coffees you drink daily?</label>
                 <select name="dropdowns" id="coffee-select">
-                    <option value="">Select the amount of coffee</option>
+                    <option value="" disabled>Select the amount of coffee</option>
                     <option value="<10">Less than 10</option>
                     <option value=">10">More than 10</option>
                     <option value="infinity">♾️</option>
