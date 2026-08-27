@@ -1,14 +1,11 @@
 type Func = {
-    func: React.Dispatch<React.SetStateAction<string>>
-    funcTwo: React.Dispatch<React.SetStateAction<string[]>>
-    funcThree: React.Dispatch<React.SetStateAction<string>>
-    funcFour: React.Dispatch<React.SetStateAction<string>>
-    funcFive: React.Dispatch<React.SetStateAction<boolean>>
-};
+    imput: React.Dispatch<React.SetStateAction<string>>
+    diagnosis: React.Dispatch<React.SetStateAction<boolean>>
+}
 
 function Form(prop: Func) {
 
-    const {func, funcTwo, funcThree, funcFour, funcFive} = prop;
+    const {imput, diagnosis} = prop
 
     function formSubmit(formData: FormData) {
         const singleInputData = Object.fromEntries(formData)
@@ -28,11 +25,8 @@ function Form(prop: Func) {
             boxes
         } as AllData
         
-        if (typeof allData.input === "string") func(allData.input)
-        if (typeof allData.radios === "string") funcThree(allData.radios)
-        if (typeof allData.dropdowns === "string") funcFour(allData.dropdowns)
-        funcTwo(boxes);
-        funcFive(prev => prev ? prev : !prev)
+        if (typeof allData.input === "string") imput(allData.input)
+        diagnosis(prev => prev ? prev : !prev)
     }
 
     return (
@@ -49,56 +43,9 @@ function Form(prop: Func) {
                   defaultValue="datatseh.ru theremembery.com cjlogostudio.com"
               />
               <button className="diagnose">diagnose</button>
-
-              <fieldset className="checkboxes">
-                <legend>How many domains do you own?</legend>
-                <label>
-                    <input type="checkbox" value="from 0 to 10" name="domains" />
-                from 0 to 10
-                </label>
-                <label>
-                    <input type="checkbox" value="from 0 to 10" name="domains" />
-                from 10 to 20
-                </label>
-                <label>
-                    <input type="checkbox" value="from 0 to 10" name="domains" />
-                from 20 to 50
-                </label>
-                <label>
-                    <input type="checkbox" value="from 0 to 10" name="domains" />
-                from 50 to ♾️
-                </label>
-              </fieldset>
-
-              <fieldset className="radios">
-                <legend>Who are you?</legend>
-                <label>
-                    <input type="radio" value="founder" name="radios" defaultChecked={true} />Founder
-                </label>
-                <label>
-                    <input type="radio" value="software engineer" name="radios" />Software engineer
-                </label>
-                <label>
-                    <input type="radio" value="employee" name="radios" />Employee
-                </label>
-              </fieldset>
-
-              <fieldset className="dropdown">
-                <label htmlFor="coffee-select">How many coffees you drink daily?</label>
-                <select name="dropdowns" id="coffee-select">
-                    <option value="" disabled>Select the amount of coffee</option>
-                    <option value="<10">Less than 10</option>
-                    <option value=">10">More than 10</option>
-                    <option value="infinity">♾️</option>
-                </select>
-              </fieldset>
             </form>
-
-            {/* <section className="diagnose">
-              <button>Diagnose My Mental State</button>
-            </section> */}
         </>
     )
 }
 
-export default Form;
+export default Form
