@@ -1,12 +1,8 @@
 type DiagnosisProps = {
-    imput: string
+    input: string
 }
 
 function Diagnosis(prop: DiagnosisProps) {
-
-    const {imput} = prop
-
-    console.log(`user's imput: ${imput}`)
 
     return (
         <section className="diagnosis">

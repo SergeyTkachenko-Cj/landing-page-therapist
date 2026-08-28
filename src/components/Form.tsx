@@ -1,11 +1,12 @@
 type Func = {
-    imput: React.Dispatch<React.SetStateAction<string>>
+    input: string,
+    setInput: React.Dispatch<React.SetStateAction<string>>
     diagnosis: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function Form(prop: Func) {
 
-    const {imput, diagnosis} = prop
+    const {input, setInput, diagnosis} = prop
 
     function formSubmit(formData: FormData) {
         const singleInputData = Object.fromEntries(formData)
@@ -25,7 +26,7 @@ function Form(prop: Func) {
             boxes
         } as AllData
         
-        if (typeof allData.input === "string") imput(allData.input)
+        if (typeof allData.input === "string") setInput(allData.input)
         diagnosis(prev => prev ? prev : !prev)
     }
 
@@ -36,13 +37,14 @@ function Form(prop: Func) {
             action={formSubmit} >
               <label className="visually-hidden" htmlFor="input">your website</label>
               <input
+                  onChange={e => setInput(e.target.value)}
                   type="text"
                   name="input"
                   id="input"
                   placeholder="your-startup.com"
-                  defaultValue="datatseh.ru theremembery.com cjlogostudio.com"
+                  value={input}
               />
-              <button className="diagnose">diagnose</button>
+              <button className="diagnose" disabled={input === ""}>diagnose</button>
             </form>
         </>
     )

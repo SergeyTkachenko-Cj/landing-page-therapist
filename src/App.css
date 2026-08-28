@@ -147,6 +147,12 @@ header p {
   cursor: pointer;
 }
 
+.diagnose:disabled {
+  background-color: #272727;
+  opacity: .6;
+  cursor: default;
+}
+
 .diagnosis h2 {
   margin-bottom: 16px;
 }
