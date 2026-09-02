@@ -1,9 +1,8 @@
 type DiagnosisProps = {
-    input: string
+    sites: {id: string, url: string}[]
 }
 
 function Diagnosis(prop: DiagnosisProps) {
-
     return (
         <section className="diagnosis">
           <h2>Diagnosis</h2>

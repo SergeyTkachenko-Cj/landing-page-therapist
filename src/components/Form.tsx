@@ -1,33 +1,34 @@
 type Func = {
     input: string,
-    setInput: React.Dispatch<React.SetStateAction<string>>
+    sites: {id: string, url: string}[],
+    setInput: React.Dispatch<React.SetStateAction<string>>,
+    setSites: React.Dispatch<React.SetStateAction<{id: string, url: string}[]>>,
+    showWebsites: React.Dispatch<React.SetStateAction<boolean>>,
     diagnosis: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function Form(prop: Func) {
 
-    const {input, setInput, diagnosis} = prop
+    const {input, setInput, setSites, showWebsites, diagnosis} = prop
 
     function formSubmit(formData: FormData) {
-        const singleInputData = Object.fromEntries(formData)
-        const boxes = formData.getAll("domains").filter(
-          (value): value is string => typeof value === "string"
-        )
-
         type AllData = {
-            input: string,
-            radios: string,
-            dropdowns: string,
-            boxes: string[]
+            input: string
         }
 
+        const inputValue = formData.get("input")
+
         const allData: AllData = {
-            ...singleInputData,
-            boxes
-        } as AllData
+            input: typeof inputValue === "string" ? inputValue : ""
+        }
+
+        if (!allData.input.trim()) return
         
-        if (typeof allData.input === "string") setInput(allData.input)
+        setInput(allData.input)
+        setSites(prev => [...prev, {id: crypto.randomUUID(), url: allData.input}])
+        showWebsites(prev => prev ? prev : !prev)
         diagnosis(prev => prev ? prev : !prev)
+        setInput("")
     }
 
     return (
@@ -44,7 +45,7 @@ function Form(prop: Func) {
                   placeholder="your-startup.com"
                   value={input}
               />
-              <button className="diagnose" disabled={input === ""}>diagnose</button>
+              <button className="add-website" disabled={input === ""}>add</button>
             </form>
         </>
     )

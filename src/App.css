@@ -132,11 +132,11 @@ header p {
   font-size: 1rem;
 } */
 
-.diagnose {
+.add-website {
   margin-bottom: 40px;
 }
 
-.diagnose button {
+.add-website button {
   width: 100%;
   padding: 18px;
   border: none;
@@ -147,13 +147,13 @@ header p {
   cursor: pointer;
 }
 
-.diagnose:disabled {
+.add-website:disabled {
   background-color: #272727;
   opacity: .6;
   cursor: default;
 }
 
-.diagnosis h2 {
+.add-website h2 {
   margin-bottom: 16px;
 }
 
