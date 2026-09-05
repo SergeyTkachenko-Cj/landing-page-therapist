@@ -20,9 +20,8 @@ function App() {
           setSites={setWebsites}
           setInput={setInpt} 
           showWebsites={setShowWebsites}
-          diagnosis={setShowDiagnosis}
         />
-        {showWebsites && <Websites sites={websites} />}
+        {showWebsites && <Websites sites={websites} diagnosis={setShowDiagnosis} />}
         {showDiagnosis && <Diagnosis sites={websites} />}
     </div>
   );

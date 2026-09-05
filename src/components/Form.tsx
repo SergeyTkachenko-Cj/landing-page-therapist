@@ -3,13 +3,12 @@ type Func = {
     sites: {id: string, url: string}[],
     setInput: React.Dispatch<React.SetStateAction<string>>,
     setSites: React.Dispatch<React.SetStateAction<{id: string, url: string}[]>>,
-    showWebsites: React.Dispatch<React.SetStateAction<boolean>>,
-    diagnosis: React.Dispatch<React.SetStateAction<boolean>>
+    showWebsites: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function Form(prop: Func) {
 
-    const {input, setInput, setSites, showWebsites, diagnosis} = prop
+    const {input, setInput, setSites, showWebsites} = prop
 
     function formSubmit(formData: FormData) {
         type AllData = {
@@ -27,7 +26,6 @@ function Form(prop: Func) {
         setInput(allData.input)
         setSites(prev => [...prev, {id: crypto.randomUUID(), url: allData.input}])
         showWebsites(prev => prev ? prev : !prev)
-        diagnosis(prev => prev ? prev : !prev)
         setInput("")
     }
 
