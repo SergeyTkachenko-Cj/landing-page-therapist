@@ -1,13 +1,17 @@
+import AiDiagnosis from "../AI-diagnosis"
+
 type DiagnosisProps = {
-    sites: {id: string, url: string}[]
+    ai: boolean
 }
 
 function Diagnosis(prop: DiagnosisProps) {
+    const aiResponse = prop.ai
+
     return (
         <section className="diagnosis">
           <h2>Diagnosis:</h2>
           <div className="diagnosis-box">
-              AI health report appears here...
+              {aiResponse ? <AiDiagnosis /> : "AI health report appears here..."}
           </div>
       </section>
     )

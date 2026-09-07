@@ -1,23 +1,24 @@
 type WebsitesProps = {
-    sites: {id: string, url: string}[],
-    diagnosis: React.Dispatch<React.SetStateAction<boolean>>
+    sites: {id: string, url: string}[]
+    diagnosisBlockShow: React.Dispatch<React.SetStateAction<boolean>>
+    aiResponse: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function Websites(prop: WebsitesProps) {
-    const inptList = prop.sites
-    const diagnosis = prop.diagnosis
+    const {sites, diagnosisBlockShow, aiResponse} = prop
 
     function getDiagnosis() {
-        diagnosis(prev => prev ? prev : !prev)
+        aiResponse(prev => !prev)
+        diagnosisBlockShow(true)
     }
 
     return (
         <>
         <h2>Your websites:</h2>
             <ul>
-                {inptList.map(i => <li key={i.id}>{i.url}</li>)}
+                {sites.map(i => <li key={i.id}>{i.url}</li>)}
             </ul>
-        {inptList && <div className="diagnosis-btn-block">
+        {sites && <div className="diagnosis-btn-block">
             <div>
                 <h3>Ready to hear your diagnosis?</h3>
                 <span>Generate your psychological portrait based on the websites</span>
