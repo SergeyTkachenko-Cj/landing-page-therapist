@@ -10,7 +10,7 @@ function App() {
   const [websites, setWebsites] = React.useState<{id: string, url: string}[]>([])
   const [showWebsites, setShowWebsites] = React.useState(false)
   const [showDiagnosis, setShowDiagnosis] = React.useState(false)
-  const [aiResponseShown, setAiResponseShown] = React.useState(false)
+  const [aiResponseShown, setAiResponseShown] = React.useState("")
 
   return (
     <div className="container">

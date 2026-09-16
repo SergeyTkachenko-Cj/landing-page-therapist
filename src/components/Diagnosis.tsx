@@ -1,17 +1,17 @@
-import AiDiagnosis from "../AI-diagnosis"
+import ReactMarkdown from "react-markdown"
 
 type DiagnosisProps = {
-    ai: boolean
+    ai: string
 }
 
 function Diagnosis(prop: DiagnosisProps) {
     const aiResponse = prop.ai
 
     return (
-        <section className="diagnosis">
+      <section className="diagnosis">
           <h2>Diagnosis:</h2>
           <div className="diagnosis-box">
-              {aiResponse ? <AiDiagnosis /> : "AI health report appears here..."}
+            <ReactMarkdown>{aiResponse}</ReactMarkdown>
           </div>
       </section>
     )

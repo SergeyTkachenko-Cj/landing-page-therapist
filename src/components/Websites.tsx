@@ -3,18 +3,18 @@ import { getRecipeFromMistral } from "../ai.js"
 type WebsitesProps = {
     sites: {id: string, url: string}[]
     diagnosisBlockShow: React.Dispatch<React.SetStateAction<boolean>>
-    aiResponse: React.Dispatch<React.SetStateAction<boolean>>
+    aiResponse: React.Dispatch<React.SetStateAction<string>>
 }
 
 function Websites(prop: WebsitesProps) {
     const {sites, diagnosisBlockShow, aiResponse} = prop
 
-    // console.log(typeof(sites[0].url));
-
     function getDiagnosis() {
-        getRecipeFromMistral(sites[0].url)
-        aiResponse(prev => !prev)
-        diagnosisBlockShow(true)
+        getRecipeFromMistral(sites.map(s => s.url)).then(result => {
+            if (!result) return
+            aiResponse(result)
+            diagnosisBlockShow(true)
+        })
     }
 
     return (
