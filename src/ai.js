@@ -58,7 +58,7 @@ Tone examples (match this energy):
 
 const hf = new InferenceClient(process.env.REACT_APP_HF_ACCESS_TOKEN)
 
-export async function getRecipeFromMistral(websitesArr) {
+export async function getDiagnosisFromMistral(websitesArr) {
 
     const websitesString = Array.isArray(websitesArr) ? websitesArr.join("\n") : websitesArr
     

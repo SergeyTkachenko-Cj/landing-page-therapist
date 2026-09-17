@@ -11,23 +11,26 @@ function App() {
   const [showWebsites, setShowWebsites] = React.useState(false)
   const [showDiagnosis, setShowDiagnosis] = React.useState(false)
   const [aiResponseShown, setAiResponseShown] = React.useState("")
+  const [loaderShown, setLoaderShown] = React.useState(false)
 
   return (
     <div className="container">
         <Header />
         <Form 
-          input={inpt} 
-          sites={websites}
-          setSites={setWebsites}
-          setInput={setInpt} 
-          showWebsites={setShowWebsites}
+          input = {inpt} 
+          sites = {websites}
+          setSites = {setWebsites}
+          setInput = {setInpt} 
+          showWebsites = {setShowWebsites}
         />
         {showWebsites && <Websites 
-          sites={websites} 
-          diagnosisBlockShow={setShowDiagnosis} 
-          aiResponse={setAiResponseShown} 
+          sites = {websites} 
+          diagnosisBlockShow = {setShowDiagnosis} 
+          aiResponse = {setAiResponseShown}
+          loaderShown = {loaderShown} 
+          setLoaderShown = {setLoaderShown}
         />}
-        {showDiagnosis && <Diagnosis ai={aiResponseShown} />}
+        {showDiagnosis && <Diagnosis ai = {aiResponseShown} loader = {loaderShown} />}
     </div>
   );
 }
