@@ -4,6 +4,8 @@ import Form from "./components/Form"
 import Diagnosis from "./components/Diagnosis"
 import Websites from "./components/Websites"
 import './App.css'
+import desktopBg from "./images/desktop_bg_loop.mp4"
+import mobileBg from "./images/mobile_bg_loop.mp4"
 
 function App() {
   const [inpt, setInpt] = React.useState("")
@@ -14,6 +16,25 @@ function App() {
   const [loaderShown, setLoaderShown] = React.useState(false)
 
   return (
+    <>
+    <video
+      className="bg-video bg-video--desktop"
+      src={desktopBg}
+      autoPlay
+      muted
+      loop
+      playsInline
+      aria-hidden="true"
+    />
+    <video
+      className="bg-video bg-video--mobile"
+      src={mobileBg}
+      autoPlay
+      muted
+      loop
+      playsInline
+      aria-hidden="true"
+    />
     <div className="container">
         <Header />
         <Form 
@@ -32,6 +53,7 @@ function App() {
         />}
         {showDiagnosis && <Diagnosis ai = {aiResponseShown} loader = {loaderShown} />}
     </div>
+    </>
   );
 }
 

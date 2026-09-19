@@ -1,12 +1,8 @@
 function Header() {
     return (
         <header>
-          <h1>🩺 SaaSanity</h1>
-          <p>
-              Paste your landing pages below.
-              We'll diagnose what's wrong with <strong>you</strong>,
-              not your website.
-          </p>
+          <h1>🩺 SaaSiatrist</h1>
+          <p>Enter your business name. Receive a diagnosis nobody asked for.</p>
         </header>
     )
 }
