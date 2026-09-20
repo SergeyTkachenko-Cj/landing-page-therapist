@@ -69,9 +69,7 @@ Good (domain-specific):
 
 const hf = new InferenceClient(process.env.REACT_APP_HF_ACCESS_TOKEN)
 
-export async function getDiagnosisFromMistral(websitesArr) {
-
-    const websitesString = Array.isArray(websitesArr) ? websitesArr.join("\n") : websitesArr
+export async function getDiagnosisFromMistral(websites) {
     
     try {
         const response = await hf.chatCompletion({
@@ -81,7 +79,7 @@ export async function getDiagnosisFromMistral(websitesArr) {
               { role: "system", content: SYSTEM_PROMPT },
               {
                 role: "user",
-                content: `Here are my websites:\n${websitesString}\n\nGive me one combined humorous psychological diagnosis based on all of them together.`
+                content: `Here are my websites:\n${websites}\n\nGive me one combined humorous psychological diagnosis based on all of them together.`
               },
             ],
             max_tokens: 1024,

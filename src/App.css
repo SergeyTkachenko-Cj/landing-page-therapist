@@ -1,3 +1,5 @@
+@import "./fonts/satoshi.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -38,18 +40,42 @@ body {
 }
 
 header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   margin-bottom: 40px;
 }
 
 header h1 {
-  font-size: 2.4rem;
-  margin-bottom: 12px;
+  font-family: "Satoshi", sans-serif;
+  font-weight: 900;
+  font-size: 14rem;
+  letter-spacing: -0.02em;
 }
 
 header p {
+  position: absolute;
+  bottom: 4%;
   color: #666;
   line-height: 1.5;
+}
+
+.glass-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 5rem;
+    background: rgba(255, 255, 255, 0.35);
+    backdrop-filter: blur(8px) saturate(140%);
+    -webkit-backdrop-filter: blur(8px) saturate(140%); /* Safari */
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 24px; 
+    box-shadow:
+      0 8px 32px rgba(17, 24, 39, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .visually-hidden {
@@ -69,7 +95,6 @@ header p {
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 50px 1fr;
   gap: 12px;
-  margin-bottom: 32px;
 }
 
 #input {

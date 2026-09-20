@@ -1,36 +1,39 @@
+import { getDiagnosisFromMistral } from "../ai.js"
+
 type Func = {
-    input: string,
-    sites: {id: string, url: string}[],
-    setInput: React.Dispatch<React.SetStateAction<string>>,
-    setSites: React.Dispatch<React.SetStateAction<{id: string, url: string}[]>>,
-    showWebsites: React.Dispatch<React.SetStateAction<boolean>>
+    input: string
+    setInput: React.Dispatch<React.SetStateAction<string>>
+    diagnosisBlockShow: React.Dispatch<React.SetStateAction<boolean>>
+    aiResponse: React.Dispatch<React.SetStateAction<string>>
+    setLoaderShown: React.Dispatch<React.SetStateAction<boolean>>
+    loaderShown: boolean
 }
 
 function Form(prop: Func) {
 
-    const {input, setInput, setSites, showWebsites} = prop
+    const {input, setInput, diagnosisBlockShow, aiResponse, setLoaderShown, loaderShown} = prop
 
     function formSubmit(formData: FormData) {
-        type AllData = {
-            input: string
-        }
-
+        type AllData = { input: string }
         const inputValue = formData.get("input")
-
         const allData: AllData = {
             input: typeof inputValue === "string" ? inputValue : ""
         }
-
-        if (!allData.input.trim()) return
-        
+        if (!allData.input.trim() || loaderShown) return    
         setInput(allData.input)
-        setSites(prev => [...prev, {id: crypto.randomUUID(), url: allData.input}])
-        showWebsites(prev => prev ? prev : !prev)
-        setInput("")
+        aiResponse("")
+        diagnosisBlockShow(true)
+        setLoaderShown(true)
+        getDiagnosisFromMistral(allData.input).then(result => {
+            if (!result) {
+                return
+            }
+            aiResponse(result)
+        }).finally(() => setLoaderShown(false))
     }
 
     return (
-        <>
+        <div className="glass-panel">
             <form 
             className="input-section" 
             action={formSubmit} >
@@ -43,9 +46,9 @@ function Form(prop: Func) {
                   placeholder="your-startup.com"
                   value={input}
               />
-              <button className="add-website" disabled={input === ""}>add</button>
+                <button className="get-ai-diagnosis" disabled={input.trim() === "" || loaderShown}>Get diagnosed</button>
             </form>
-        </>
+        </div>
     )
 }
 
