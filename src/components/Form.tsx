@@ -10,7 +10,6 @@ type Func = {
 }
 
 function Form(prop: Func) {
-
     const {input, setInput, diagnosisBlockShow, aiResponse, setLoaderShown, loaderShown} = prop
 
     function formSubmit(formData: FormData) {
@@ -32,20 +31,25 @@ function Form(prop: Func) {
         }).finally(() => setLoaderShown(false))
     }
 
+    function erase() { setInput("") }
+
     return (
         <div className="glass-panel">
             <form 
             className="input-section" 
             action={formSubmit} >
               <label className="visually-hidden" htmlFor="input">your website</label>
-              <input
-                  onChange={e => setInput(e.target.value)}
-                  type="text"
-                  name="input"
-                  id="input"
-                  placeholder="your-startup.com"
-                  value={input}
-              />
+              <div>
+                <input
+                    onChange={e => setInput(e.target.value)}
+                    type="text"
+                    name="input"
+                    id="input"
+                    placeholder="your-startup"
+                    value={input}
+                />
+                <button id="cross" type="button" onClick={erase}>✖️</button>
+              </div>
                 <button className="get-ai-diagnosis" disabled={input.trim() === "" || loaderShown}>Get diagnosed</button>
             </form>
         </div>
