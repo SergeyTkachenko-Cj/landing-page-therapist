@@ -34,7 +34,7 @@ function Form(prop: Func) {
     function erase() { setInput("") }
 
     return (
-        <div className="glass-panel">
+        <div className="glass-panel rise-in rise-in--delay-2">
             <form 
             className="input-section" 
             action={formSubmit} >

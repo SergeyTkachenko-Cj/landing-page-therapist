@@ -16,9 +16,14 @@ function Diagnosis(prop: DiagnosisProps) {
           <div className="ai-loader__bar" /></div>
       </div> 
       : 
-      <section className="diagnosis">
-          <h2>Diagnosis:</h2>
+      <section className="diagnosis rise-in">
           <div className="diagnosis-box">
+              {ai !== "" && <><img src="/images/mental-disorder.png" 
+                                   alt="head icon" 
+                                   className="head-icon">
+                              </img>
+                              <h1>Diagnosis</h1></>
+              }
             <ReactMarkdown>
               {ai === "" ? "Ooops, looks like our robo-gods are not in the mood" : ai}
             </ReactMarkdown>

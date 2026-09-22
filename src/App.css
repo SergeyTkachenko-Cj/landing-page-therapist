@@ -14,7 +14,7 @@ body {
     radial-gradient(900px 650px at 88% 22%, #a78bfa 0%, transparent 55%),
     radial-gradient(900px 650px at 50% 95%, #fb7185 0%, transparent 55%),
     linear-gradient(135deg, #ffffff 0%, #ecfeff 35%, #eef2ff 70%, #fff7ed 100%);
-  color: #111827;
+  color: #3c3e44;
   background: transparent;
 }
 
@@ -116,6 +116,7 @@ header p {
   border: 2px solid #ddd;
   border-radius: 10px;
   font-size: 1rem;
+  color: #3c3e44 !important;
 }
 
 .input-section input:focus {
@@ -176,16 +177,34 @@ header p {
 }
 
 .diagnosis-box {
-  background: white;
-  border: 1px solid #ddd;
-  border-radius: 12px;
   margin-top: 2rem;
-  padding: 24px;
   line-height: 1.6;
+  padding: 3rem 2rem;
+  container-type: inline-size;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(5px) saturate(140%);
+  -webkit-backdrop-filter: blur(5px) saturate(140%); /* Safari */
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 24px; 
+  box-shadow:
+    0 8px 32px rgba(17, 24, 39, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.head-icon {
+  display: block;
+  width: 4.5rem;
+  margin: 0 auto;
+}
+
+.diagnosis-box h1 {
+  margin: 0 0 4rem;
+  text-align: center;
 }
 
 .diagnosis-box h3 {
   margin: 2rem 0;
+  text-decoration: underline;
 }
 
 .diagnosis-box ul {
@@ -252,7 +271,59 @@ header p {
   }
 }
 
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.7s ease-out both;
+}
+
+.rise-in--delay-1 { animation-delay: 0.1s; }
+.rise-in--delay-2 { animation-delay: 0.22s; }
+.rise-in--delay-3 { animation-delay: 0.34s; }
+
+@media (max-width: 1060px) {
+  header h1 {
+    font-size: clamp(1.25rem, 20vw, 50rem);
+  }
+}
+
 @media (max-width: 768px) {
   .bg-video--desktop { display: none; }
+  
   .bg-video--mobile { display: block; }
+
+  header p {
+    position: relative;
+  }
+}
+
+@media (max-width: 561px) {
+  .input-section {
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .input-section div {
+    grid-column: span 7 / span 7;
+  }
+
+  .input-section button {
+    grid-column: span 7 / span 7;
+    grid-row-start: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in {
+    animation: none;
+  }
 }
