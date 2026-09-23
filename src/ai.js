@@ -33,7 +33,7 @@ Format:
 
 Use exactly this structure:
 
-## <Invented Diagnosis Name rooted in the submitted domains>
+### <Invented Diagnosis Name rooted in the submitted domains>
 
 ### What your domains reveal
 - 3 to 5 short bullets; each bullet must include at least one submitted domain name and what that name implies

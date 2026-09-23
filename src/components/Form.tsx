@@ -34,7 +34,7 @@ function Form(prop: Func) {
     function erase() { setInput("") }
 
     return (
-        <div className="glass-panel rise-in rise-in--delay-2">
+        <div className="input-bar glass-panel rise-in rise-in--delay-2">
             <form 
             className="input-section" 
             action={formSubmit} >
@@ -48,9 +48,10 @@ function Form(prop: Func) {
                     placeholder="your-startup"
                     value={input}
                 />
-                <button id="cross" type="button" onClick={erase}>✖️</button>
+                <button id="cross" type="button" onClick={erase}>×</button>
+                {/* ✖️ */}
               </div>
-                <button className="get-ai-diagnosis" disabled={input.trim() === "" || loaderShown}>Get diagnosed</button>
+                <button className="get-ai-diagnosis" disabled={input.trim() === "" || loaderShown}>Diagnose</button>
             </form>
         </div>
     )

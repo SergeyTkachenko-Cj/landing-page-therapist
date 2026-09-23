@@ -8,7 +8,7 @@
 
 body {
   min-height: 100vh;
-  font-family: Inter, sans-serif;
+  font-family: "Satoshi", sans-serif;
   background:
     radial-gradient(900px 650px at 12% 18%, #22d3ee 0%, transparent 55%),
     radial-gradient(900px 650px at 88% 22%, #a78bfa 0%, transparent 55%),
@@ -58,20 +58,24 @@ header h1 {
 header p {
   position: absolute;
   bottom: 4%;
-  color: #666;
+  font-size: 1.2rem;
+  color: #3c3e44;
   line-height: 1.5;
 }
 
+.input-bar {
+  padding: 3rem 2rem;
+}
+
 .glass-panel {
-    padding: 3rem 2rem;
-    background: rgba(255, 255, 255, 0.35);
-    backdrop-filter: blur(5px) saturate(140%);
-    -webkit-backdrop-filter: blur(5px) saturate(140%); /* Safari */
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    border-radius: 24px; 
-    box-shadow:
-      0 8px 32px rgba(17, 24, 39, 0.08),
-      inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px) saturate(140%);
+  -webkit-backdrop-filter: blur(8px) saturate(140%); /* Safari */
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 24px; 
+  box-shadow:
+    0 8px 32px rgba(17, 24, 39, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
 .visually-hidden {
@@ -115,7 +119,8 @@ header p {
   padding: 14px 2.3rem;
   border: 2px solid #ddd;
   border-radius: 10px;
-  font-size: 1rem;
+  font-family: "Satoshi", sans-serif;
+  font-size: 1.2rem;
   color: #3c3e44 !important;
 }
 
@@ -133,12 +138,13 @@ header p {
   border-radius: 10px;
   padding: 5px 10px;
   cursor: pointer;
-  font-weight: 600;
+  font-size: 1.2rem;
 }
 
 #cross {
   position: absolute;
-  top: 25%; right: 1rem;
+  top: 15%; right: .4rem;
+  font-size: 1.5rem;
   color: #111827;
   background-color: unset;
 }
@@ -181,30 +187,57 @@ header p {
   line-height: 1.6;
   padding: 3rem 2rem;
   container-type: inline-size;
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(5px) saturate(140%);
-  -webkit-backdrop-filter: blur(5px) saturate(140%); /* Safari */
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 24px; 
-  box-shadow:
-    0 8px 32px rgba(17, 24, 39, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  font-weight: unset;
 }
 
 .head-icon {
   display: block;
   width: 4.5rem;
-  margin: 0 auto;
+  height: auto;
+  margin: 0 auto 0.75rem;
+  color: #111827;
+  overflow: visible;
+  opacity: 0.8;
 }
 
-.diagnosis-box h1 {
-  margin: 0 0 4rem;
+.head-icon__tangle {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: tangle-writhe 3s ease-in-out infinite;
+}
+
+@keyframes tangle-writhe {
+  0%       { transform: rotate(0deg) scale(.8); }
+  25%      { transform: rotate(360deg) scale(.8); }
+  90%      { transform: rotate(360deg) scale(.8); }
+  100%     { transform: rotate(360deg) scale(.8); }
+}
+
+.diagnosis-box h2 {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: unset;
+}
+
+.diagnosis-box h3:first-of-type {
+  margin: 1.5rem 0 5rem;
+  font-weight: unset;
   text-align: center;
 }
 
-.diagnosis-box h3 {
+.diagnosis-box h3:first-of-type::before {
+  content: "“";
+}
+
+.diagnosis-box h3:first-of-type::after {
+  content: "“";
+}
+
+.diagnosis-box h3:not(:first-of-type) {
   margin: 2rem 0;
   text-decoration: underline;
+  font-weight: unset;
 }
 
 .diagnosis-box ul {
@@ -220,6 +253,10 @@ header p {
   margin-bottom: 1rem;
 }
 
+.get-ai-diagnosis {
+  font-family: "Satoshi", sans-serif;
+}
+
 .get-ai-diagnosis:disabled {
   color: #aca5a5;
   opacity: .6;
@@ -229,21 +266,13 @@ header p {
 .ai-loader {
   margin-top: 2rem;
   padding: 3rem 2rem;
-  background: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(5px) saturate(140%);
-  -webkit-backdrop-filter: blur(5px) saturate(140%); /* Safari */
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  border-radius: 24px; 
-  box-shadow:
-    0 8px 32px rgba(17, 24, 39, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  font-family: "Satoshi", sans-serif;
 }
 
 .ai-loader__label {
   margin: 0 0 2rem;
   color: #111827;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.2rem;
 }
 
 .ai-loader__track {
@@ -274,7 +303,7 @@ header p {
 @keyframes rise-in {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(4rem);
   }
   to {
     opacity: 1;
@@ -283,22 +312,53 @@ header p {
 }
 
 .rise-in {
-  animation: rise-in 0.7s ease-out both;
+  animation: rise-in .3s ease-out both;
 }
 
 .rise-in--delay-1 { animation-delay: 0.1s; }
 .rise-in--delay-2 { animation-delay: 0.22s; }
 .rise-in--delay-3 { animation-delay: 0.34s; }
 
+.viewport-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none; 
+  place-items: center;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.viewport-gate__card {
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(5px) saturate(140%);
+  -webkit-backdrop-filter: blur(5px) saturate(140%); /* Safari */
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 24px; 
+  box-shadow:
+    0 8px 32px rgba(17, 24, 39, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  max-width: 22rem;
+  text-align: center;
+  padding: 2rem 1.5rem;
+}
+
+.viewport-gate__body {
+  color: #4b5563;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
 @media (max-width: 1060px) {
   header h1 {
-    font-size: clamp(1.25rem, 20vw, 50rem);
+    font-size: clamp(1.25rem, 21vw, 50rem);
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .bg-video--desktop { display: none; }
-  
   .bg-video--mobile { display: block; }
 
   header p {
@@ -322,8 +382,17 @@ header p {
   }
 }
 
+@media (max-width: 250px) {
+  .viewport-gate { display: grid; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .rise-in {
     animation: none;
+  }
+
+  .head-icon__tangle {
+    animation: none;
+    fill: #8b5cf6;
   }
 }
