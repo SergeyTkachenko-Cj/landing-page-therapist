@@ -25,9 +25,7 @@ function Diagnosis(prop: DiagnosisProps) {
                   <h2>Diagnosis</h2>
                 </>
               )}
-            <ReactMarkdown>
-              {ai === "" ? "Ooops, looks like our robo-gods are not in the mood" : ai}
-            </ReactMarkdown>
+            <ReactMarkdown>{ai}</ReactMarkdown>
           </div>
       </section>
     )

@@ -204,7 +204,7 @@ header p {
 .head-icon__tangle {
   transform-origin: center;
   transform-box: fill-box;
-  animation: tangle-writhe 3s ease-in-out infinite;
+  animation: tangle-writhe 3s ease-in-out;
 }
 
 @keyframes tangle-writhe {
@@ -393,6 +393,5 @@ header p {
 
   .head-icon__tangle {
     animation: none;
-    fill: #8b5cf6;
   }
 }

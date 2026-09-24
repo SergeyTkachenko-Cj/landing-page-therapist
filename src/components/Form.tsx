@@ -1,3 +1,4 @@
+import { useRef  } from "react"
 import { getDiagnosisFromMistral } from "../ai.js"
 
 type Func = {
@@ -12,23 +13,29 @@ type Func = {
 function Form(prop: Func) {
     const {input, setInput, diagnosisBlockShow, aiResponse, setLoaderShown, loaderShown} = prop
 
+    const inAction = useRef(false) // prevents extra API requests
+
     function formSubmit(formData: FormData) {
         type AllData = { input: string }
         const inputValue = formData.get("input")
         const allData: AllData = {
             input: typeof inputValue === "string" ? inputValue : ""
         }
-        if (!allData.input.trim() || loaderShown) return    
+        if (!allData.input.trim() || loaderShown || inAction.current) return  
+        
+        inAction.current = true
+
         setInput(allData.input)
         aiResponse("")
         diagnosisBlockShow(true)
         setLoaderShown(true)
+        
         getDiagnosisFromMistral(allData.input).then(result => {
-            if (!result) {
-                return
-            }
-            aiResponse(result)
-        }).finally(() => setLoaderShown(false))
+            aiResponse(result || "Ooops, looks like our robo-gods are not in the mood")
+        }).finally(() => {
+            inAction.current = false
+            setLoaderShown(false)
+        })
     }
 
     function erase() { setInput("") }
@@ -49,7 +56,6 @@ function Form(prop: Func) {
                     value={input}
                 />
                 <button id="cross" type="button" onClick={erase}>×</button>
-                {/* ✖️ */}
               </div>
                 <button className="get-ai-diagnosis" disabled={input.trim() === "" || loaderShown}>Diagnose</button>
             </form>

@@ -70,7 +70,6 @@ Good (domain-specific):
 const hf = new InferenceClient(process.env.REACT_APP_HF_ACCESS_TOKEN)
 
 export async function getDiagnosisFromMistral(websites) {
-    
     try {
         const response = await hf.chatCompletion({
             // model: "mistralai/Mistral-7B-Instruct-v0.1:featherless-ai",
@@ -84,8 +83,10 @@ export async function getDiagnosisFromMistral(websites) {
             ],
             max_tokens: 1024,
           })
-        return response.choices[0].message.content
+          const text = response.choices?.[0]?.message?.content?.trim()
+          if (!text) throw new Error("Empty reply from the model")
+          return text
     } catch (err) {
-        console.error(err.message)
+        return err.message
     }
 }
