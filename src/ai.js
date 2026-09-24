@@ -57,16 +57,6 @@ Good (domain-specific):
 - "cjlogostudio.com says logo studio; your diagnosis says you collect brand identities like Pokémon."
 `
 
-// 🚨👉 ALERT: Read message below! You've been warned! 👈🚨
-// If you're following along on your local machine make sure you don't commit your API keys
-// to any repositories and don't deploy your project anywhere
-// live online. Otherwise, anyone could inspect your source
-// and find your API keys/tokens. If you want to deploy
-// this project, you'll need to create a backend of some kind,
-// either your own or using some serverless architecture where
-// your API calls can be made. Doing so will keep your
-// API keys private.
-
 const hf = new InferenceClient(process.env.REACT_APP_HF_ACCESS_TOKEN)
 
 export async function getDiagnosisFromMistral(websites) {
