@@ -147,14 +147,13 @@ header p {
   background-color: unset;
 }
 
-.diagnosis {
+.diagnosis-section {
   margin-top: 2rem;
 }
 
 .diagnosis-box {
-  margin-top: 2rem;
   line-height: 1.6;
-  padding: 3rem 2rem;
+  padding: 4rem;
   container-type: inline-size;
   font-size: 1.2rem;
 }
@@ -172,6 +171,7 @@ header p {
 .head-icon__tangle {
   transform-origin: center;
   transform-box: fill-box;
+  transform: scale(.8);
   animation: tangle-writhe 3s ease-in-out;
 }
 
@@ -188,7 +188,7 @@ header p {
 }
 
 .diagnosis-box h3:first-of-type {
-  margin: 1.5rem 0 5rem;
+  margin: 1.5rem 0 4rem;
   font-weight: unset;
   text-align: center;
 }
@@ -222,8 +222,7 @@ header p {
 }
 
 .ai-loader {
-  margin-top: 2rem;
-  padding: 3rem 2rem;
+  padding: 3rem 2.5rem;
   font-family: "Satoshi", sans-serif;
 }
 
@@ -310,9 +309,7 @@ header p {
 
 @media (max-width: 1060px) {
   #root {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    min-height: 100%;
   }
   
   header h1 {
@@ -342,6 +339,10 @@ header p {
   .input-section button {
     grid-column: span 7 / span 7;
     grid-row-start: 2;
+  }
+
+  .diagnosis-box {
+    padding: 3rem 2rem;
   }
 }
 

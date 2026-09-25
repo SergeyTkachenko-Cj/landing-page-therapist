@@ -11,23 +11,21 @@ function Diagnosis(prop: DiagnosisProps) {
 
     return (
       loader ? 
-      <div className="ai-loader glass-panel" role="status" aria-live="polite" aria-busy="true">
-        <p className="ai-loader__label">Consulting Skynet...</p>
-        <div className="ai-loader__track">
-          <div className="ai-loader__bar" /></div>
-      </div> 
+        <div className="ai-loader" role="status" aria-live="polite" aria-busy="true">
+          <p className="ai-loader__label">Consulting Skynet...</p>
+          <div className="ai-loader__track">
+            <div className="ai-loader__bar" /></div>
+        </div> 
       : 
-      <section className="diagnosis rise-in">
-          <div className="diagnosis-box glass-panel">
-              {ai !== "" && (
-                <>
-                  <HeadIcon className="head-icon" aria-hidden="true" />
-                  <h2>Diagnosis</h2>
-                </>
-              )}
-            <ReactMarkdown>{ai}</ReactMarkdown>
-          </div>
-      </section>
+        <div className="diagnosis-box rise-in">
+            {ai !== "" && (
+              <>
+                <HeadIcon className="head-icon" aria-hidden="true" />
+                <h2>Diagnosis</h2>
+              </>
+            )}
+          <ReactMarkdown>{ai}</ReactMarkdown>
+        </div>
     )
 }
 
