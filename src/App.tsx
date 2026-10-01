@@ -13,6 +13,7 @@ function App() {
   const [showDiagnosis, setShowDiagnosis] = React.useState(false)
   const [aiResponseShown, setAiResponseShown] = React.useState("")
   const [loaderShown, setLoaderShown] = React.useState(false)
+  const scroll = React.useRef(null)
 
   return (
     <>
@@ -52,8 +53,8 @@ function App() {
           setInput = {setInpt} 
         />
           {showDiagnosis && 
-          <div className="diagnosis-section glass-panel">
-            <Diagnosis ai = {aiResponseShown} loader = {loaderShown} />
+          <div className="diagnosis-section glass-panel" ref={scroll}>
+            <Diagnosis ai = {aiResponseShown} loader = {loaderShown} scroll = {scroll} />
           </div>
           }
     </div>
