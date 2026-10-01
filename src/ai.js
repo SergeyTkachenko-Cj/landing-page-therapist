@@ -59,24 +59,28 @@ Good (name-specific):
 
 const hf = new InferenceClient(process.env.REACT_APP_HF_ACCESS_TOKEN)
 
-export async function getDiagnosisFromMistral(websites) {
+const MAX_TOKENS = 2048
+
+export async function getDiagnosisFromMistral(names) {
     try {
-        const response = await hf.chatCompletion({
-            // model: "mistralai/Mistral-7B-Instruct-v0.1:featherless-ai",
-            model: "openai/gpt-oss-20b:fastest",
-            messages: [
-              { role: "system", content: SYSTEM_PROMPT },
-              {
-                role: "user",
-                content: `Here are my websites:\n${websites}\n\nGive me one combined humorous psychological diagnosis based on all of them together.`
-              },
-            ],
-            max_tokens: 1024,
-          })
-          const text = response.choices?.[0]?.message?.content?.trim()
-          if (!text) throw new Error("Empty reply from the model")
-          return text
+      const response = await hf.chatCompletion({
+        // model: "mistralai/Mistral-7B-Instruct-v0.1:featherless-ai",
+        model: "openai/gpt-oss-20b:fastest",
+        messages: [
+          { role: "system", content: SYSTEM_PROMPT },
+          {
+            role: "user",
+            content: `Here are my names:\n${names}\n\nGive me one combined humorous psychological diagnosis based on all of them together.`
+          },
+        ],
+        max_tokens: MAX_TOKENS,
+      })
+
+      const text = response.choices?.[0]?.message?.content?.trim()
+      if (!text) throw new Error("Empty reply from the model")
+      return text
     } catch (err) {
+        console.error("[diagnosis error]", err)
         return err.message
     }
 }
