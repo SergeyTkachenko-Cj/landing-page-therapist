@@ -9,6 +9,8 @@
 body {
   font-family: "Satoshi", sans-serif;
   color: #3c3e44;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background: transparent;
 }
 

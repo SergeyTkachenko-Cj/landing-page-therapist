@@ -61,7 +61,7 @@ const hf = new InferenceClient(process.env.REACT_APP_HF_ACCESS_TOKEN)
 
 const MAX_TOKENS = 2048
 
-export async function getDiagnosisFromMistral(names) {
+export async function getDiagnosis(names) {
     try {
       const response = await hf.chatCompletion({
         // model: "mistralai/Mistral-7B-Instruct-v0.1:featherless-ai",
@@ -81,6 +81,6 @@ export async function getDiagnosisFromMistral(names) {
       return text
     } catch (err) {
         console.error("[diagnosis error]", err)
-        return err.message
+        return "### Oops... Looks like our robots got rusty"
     }
 }
